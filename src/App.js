@@ -5,6 +5,7 @@ import Login from './COMPONENTS/Login';
 import { getToken } from './config';
 import spotifyWebApi from 'spotify-web-api-js'
 import Datacontext from './STORE/data';
+import Player from './COMPONENTS/Player';
 
 function App() {
   const data=useContext(Datacontext)
@@ -31,6 +32,17 @@ function App() {
       // push user data into data layer
       spotify.getMe().then(user=>{
         data.setUser(user)
+        console.log(user)
+      })
+
+      // push playlist data into data lauyer
+      spotify.getUserPlaylists().then(playlists=>{
+        data.setPlaylists(playlists.items)
+      })
+
+      // get playlist data
+      spotify.getPlaylist('37i9dQZEVXcN4TWb3Shvjm').then(playlist=>{
+        data.setCurrentPlaylist(playlist)
       })
 
     }
@@ -39,11 +51,11 @@ function App() {
 
 
 
-console.log(data)
+// console.log(data)
 
   return (
     <div className="app">
-      {token && <h1>Successfully logged into spotify account</h1>}
+      {token && <Player spotify={spotify}></Player>}
       {!token && <Login></Login>}
       
     </div>

@@ -1,0 +1,41 @@
+.song{
+    width: 100%;
+    /* border: 1px solid white; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    border-radius: 5px;
+}
+.song:hover{
+    background-color: rgba(128, 128, 128,0.3);
+}
+
+.song_title{
+    flex: 0.4;
+    display: flex;
+    justify-content:flex-start;
+    align-items: center;
+    gap: 10px;
+}
+
+.song_title img{
+    height:40px;
+}
+
+.song_description{}
+
+.song h4{
+    flex: 0.2;
+    color: grey;
+    font-weight: 500 !important;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+.song_title h3{
+    
+    color: #fff;
+    font-weight: 500 !important;
+    font-size: 16px;
+    /* letter-spacing: 1px; */
+}

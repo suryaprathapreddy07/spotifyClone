@@ -18,6 +18,16 @@ if(action.type=='SET_TOKEN'){
     access_token:action.token}
 }
 
+if(action.type=='SET_PLAYLISTS'){
+  return {...state,
+  playlists:action.playlists}
+}
+
+if(action.type=='SET_CURRENT_PLAYLIST'){
+  return {...state,
+  currentPlaylist:action.playlist}
+}
+
 
 
 
@@ -27,11 +37,11 @@ if(action.type=='SET_TOKEN'){
 
 
 
-const defaultState={user:null,access_token:null,playlists:[],playing:false,item:null}
+const defaultState={user:null,access_token:null,playlists:[],playing:false,item:null,currentPlaylist:null}
 
 
 
-
+// function which returns context.provider
 function DataProvider(props) {
     const [state,dispatchdataactions]=useReducer(datareducer,defaultState)
 
@@ -45,14 +55,25 @@ const setTokenHandler=function(token){
   dispatchdataactions({type:'SET_TOKEN',token:token})
 }
 
+const setPlaylistHandler=function(playlists){
+  dispatchdataactions({type:'SET_PLAYLISTS',playlists:playlists})
+}
+
+const setCurrentPlaylistHandler=function(playlist){
+  dispatchdataactions({type:'SET_CURRENT_PLAYLIST',playlist:playlist})
+}
+
     const datacontext={
       user:state.user,
       access_token:state.access_token,
       playlists:state.playlists,
       playing:state.playing,
       item:state.item,
+      currentPlaylist:state.currentPlaylist,
       setUser:setUserHandler,
-      setToken:setTokenHandler
+      setToken:setTokenHandler,
+      setPlaylists:setPlaylistHandler,
+      setCurrentPlaylist:setCurrentPlaylistHandler
     }
   return (<Datacontext.Provider value={datacontext}>
     {props.children}
